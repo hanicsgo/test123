@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project của em Hải</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+ </head>
+ <body>
+<div class="container">
+    <div id="app">
+        <template id="step1" v-if="activePhase == 1">
+            <h1>Step 1</h1>
+            <div class="form-group col">
+                <label>Full Name</label><input name="name" v-model="step1.name" class="form-control">
+            </div>
+            <div class="form-group col">
+                <label>Your Email</label><input name="email" v-model="step1.email" class="form-control">
+            </div>
+            <button type="button" @click.prevent="goToStep(2)" class="btn btn-primary">Continue</button>
+        </template>
+         
+        <template id="step2" v-if="activePhase == 2">
+            <h1>Step 2</h1>
+            <div class="form-group col">
+                <label>Your Company Name</label><input name="Your Company Name" v-model="step2.city" class="form-control">
+            </div>
+            <div class="form-group col">
+                <label>Number of Employeese</label><input name="Number of Employeese" v-model="step2.state" class="form-control">
+            </div>
+            <button type="button" @click.prevent="goToStep(3)" class="btn btn-primary">Continue</button>
+        </template>
+         
+        <template id="step3" v-if="activePhase == 3">
+          <h1>Step 3</h1>
+          <div class="form-group col">
+            <label>Number of Employeese</label>
+            <select name="checkbox" id="">
+              <option value="Friend">Friend</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Website">Website</option>
+            </select>
+
+        </div>
+
+        <div>
+          <input type="radio" name="radio" value="radio">
+          I accept terms & conditions
+        </div>
+
+        <div>
+          <button type="button" @click.prevent="goToStep(4)" class="btn btn-primary">
+            Finish
+          </button>
+        </div>
+
+      </template>
+    </div>
+</div>
+<script>
+Vue.component('step1', {
+    template: '#step1',
+    props: [
+        'activePhase',
+        'step1'
+    ]
+});
+ 
+Vue.component('step2', {
+    template: '#step2',
+    props: [
+        'activePhase',
+        'step2'
+    ]
+});
+
+Vue.component('step3', {
+  template: '#step3',
+  props: [
+      'activePhase',
+      'step3'
+  ]
+});
+ 
+var app = new Vue({
+    el: '#app',
+    data: {
+        activePhase: 1,
+        step1: {
+            name: '',
+            email: ''
+        },
+        step2: {
+            city: '',
+            state: ''
+        },
+        step3: {
+          city1: '',
+          state2: ''
+      }
+    },
+    ready: function() {
+        console.log('ready');
+    },
+    methods: {
+        goToStep: function(step) {
+            this.activePhase = step;
+        }
+    }
+});
+</script>
+<style>
+  app.solid 
+  {
+    border-style: solid;
+  }
+</style>
+</body>
+</html>
